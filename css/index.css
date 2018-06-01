@@ -1,0 +1,21 @@
+.active {
+    background-color: pink;
+}
+
+#app {
+    width: 600px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+li {
+    border: 1px solid #ccc;
+}
+
+li span:nth-child(1) {
+    float: left;
+}
+
+li span:nth-child(2) {
+    float: right;
+}

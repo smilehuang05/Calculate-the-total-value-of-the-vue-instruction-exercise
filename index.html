@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue指令练习之计算总价</title>
+    <!-- 第一步:引入vue.js文件 /样式文件-->
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!-- 第二步:创建控制区域 -->
+    <div id="app">
+        <span>总价:{{total}}</span>
+        <ul>
+            <li v-for="item in list" @click="calcPrice(item)" :class="{'active':item.isClick}">
+                <span>{{item.name}}</span>
+                <span>￥{{item.price}}</span>
+            </li>
+        </ul>
+
+
+    </div>
+    <!-- 第三步:创建实例 -->
+    <script>
+        //分析:
+        //1.当鼠标点击,此行背景变成红色,且计算相加价格同步到总价total中
+        //2.当鼠标点击,背景颜色消失,则计算减去该项的值
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                total: 0,
+                list: [{
+                    name: '苹果',
+                    price: 15,
+                    flag: false,
+                    isClick: false
+                }, {
+                    name: '香蕉',
+                    price: 25,
+                    flag: false,
+                    isClick: false
+                }, {
+                    name: '哈密瓜',
+                    price: 28,
+                    flag: false,
+                    isClick: false
+                }, {
+                    name: '荔枝',
+                    price: 26,
+                    flag: false,
+                    isClick: false
+                }, ]
+            },
+            methods: {
+                calcPrice(item) {
+                    item.flag = item.isClick = !item.isClick;
+                    if (item.flag) {
+                        this.total += item.price;
+                    } else {
+                        this.total -= item.price;
+                    }
+
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
